@@ -19,5 +19,8 @@ class DataLoader(TorchDataLoader):
     """
     def __init__(self, *args, collate_fn=None, **kwargs):
         if collate_fn is None:
-            collate_fn = lambda batch_list: batch_list
+            collate_fn = self.collate_fn
         super().__init__(*args, collate_fn=collate_fn, **kwargs)
+
+    def collate_fn(self, batch_list):
+        return batch_list
